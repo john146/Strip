@@ -26,16 +26,11 @@
     return self;
 }
 
-- (BOOL)first: (NSString *)firstValue matches: (NSString *)secondValue {
+- (BOOL)first: (NSString *)firstValue matches: (NSString *)secondValue firstRange: (NSRange)range1 secondRange: (NSRange)range2 {
     BOOL retVal = NO;
     if (1 == [firstValue length]) {
-        NSRange range, range1;
-        range.location = 0;
-        range.length = 1;
-        range1.location = 1;
-        range1.length = 1;
-        if (NSOrderedSame == [secondValue compare: firstValue options: NSLiteralSearch range: range]) {
-            if (NSOrderedSame == [secondValue compare: @"0" options: NSLiteralSearch range: range1]) {
+        if (NSOrderedSame == [secondValue compare: firstValue options: NSLiteralSearch range: range1]) {
+            if (NSOrderedSame == [secondValue compare: @"0" options: NSLiteralSearch range: range2]) {
                 retVal = YES;
             }
         } 
@@ -48,6 +43,24 @@
     return retVal;
 }
 
+- (BOOL) firstZone: (NSString *)firstZone matches: (NSString *)secondZone {
+    NSRange range1, range2;
+    range1.location = 0;
+    range1.length = 1;
+    range2.location = 1;
+    range2.length = 1;
+    return [self first: firstZone matches: secondZone firstRange: range1 secondRange: range2];
+}
+
+- (BOOL)firstNotZone: (NSString *)firstValue matches: (NSString *)secondValue {
+    NSRange range1, range2;
+    range1.location = 0;
+    range1.length = 1;
+    range2.location = 1;
+    range2.length = 1;
+    return [self first: firstValue matches: secondValue firstRange: range2 secondRange: range1];
+}
+
 - (BOOL)match: (NSArray *)components {
     if (2 > [components count]) {
         return NO;
@@ -57,9 +70,9 @@
     NSString *secondComponent = (NSString *)[components objectAtIndex: 1]; // PI ILC
     NSArray *firstValues = [firstComponent componentsSeparatedByString: @"-"];
     NSArray *secondValues = [secondComponent componentsSeparatedByString: @"-"];
-    return ([self first: [firstValues objectAtIndex: 0] matches: [secondValues objectAtIndex: 0]] &&
-         [self first: [firstValues objectAtIndex: 1] matches: [secondValues objectAtIndex: 1]] &&
-            [self first: [firstValues objectAtIndex: 2] matches: [secondValues objectAtIndex: 2]]); 
+    return (![self firstZone: [firstValues objectAtIndex: 0] matches: [secondValues objectAtIndex: 0]] ||
+         ![self firstNotZone: [firstValues objectAtIndex: 1] matches: [secondValues objectAtIndex: 1]] ||
+            ![self firstNotZone: [firstValues objectAtIndex: 2] matches: [secondValues objectAtIndex: 2]]); 
 }
 
 - (BOOL)stripFile {
@@ -92,13 +105,6 @@
     }
     
     return YES;
-}
-
-- (void)dealloc {
-    [oldFile release];
-    [newFile release];
-    
-    [super dealloc];
 }
 
 @end
