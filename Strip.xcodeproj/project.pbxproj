@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		52381A3E13B010540057EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52381A3D13B010540057EE68 /* Foundation.framework */; };
 		52381A4113B010540057EE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52381A4013B010540057EE68 /* main.m */; };
+		52381A4C13B013970057EE68 /* Strip.m in Sources */ = {isa = PBXBuildFile; fileRef = 52381A4B13B013970057EE68 /* Strip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +28,10 @@
 		52381A3913B010540057EE68 /* Strip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Strip; sourceTree = BUILT_PRODUCTS_DIR; };
 		52381A3D13B010540057EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52381A4013B010540057EE68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		52381A4313B010540057EE68 /* Strip-Prefix.pch */ = {isa = PBXFileReference; path = "Strip-Prefix.pch"; sourceTree = "<group>"; };
+		52381A4313B010540057EE68 /* Strip-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Strip-Prefix.pch"; sourceTree = "<group>"; };
 		52381A4413B010540057EE68 /* Strip.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Strip.1; sourceTree = "<group>"; };
+		52381A4A13B013970057EE68 /* Strip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strip.h; sourceTree = "<group>"; };
+		52381A4B13B013970057EE68 /* Strip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Strip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 				52381A4013B010540057EE68 /* main.m */,
 				52381A4413B010540057EE68 /* Strip.1 */,
 				52381A4213B010540057EE68 /* Supporting Files */,
+				52381A4A13B013970057EE68 /* Strip.h */,
+				52381A4B13B013970057EE68 /* Strip.m */,
 			);
 			path = Strip;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52381A4113B010540057EE68 /* main.m in Sources */,
+				52381A4C13B013970057EE68 /* Strip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
